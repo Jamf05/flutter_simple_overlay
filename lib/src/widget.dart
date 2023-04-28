@@ -1,4 +1,4 @@
-part of 'simple_overlay.dart';
+part of '../simple_overlay.dart';
 
 class _OverlayWidget extends StatefulWidget {
   final Widget? content;
@@ -7,16 +7,17 @@ class _OverlayWidget extends StatefulWidget {
   final double? right;
   final double? bottom;
   final double? width;
-  final double? height;
   final Duration? duration;
-  final Duration? reverse;
-  final OverlayType? type;
+  final OverlayType type;
   final void Function()? onTap;
-  final NotificationPosition? notificationPosition;
-  final NotificationDisplacement? notificationDisplacement;
-  final EdgeInsetsGeometry? padding;
+  final Color background;
   final EdgeInsetsGeometry? margin;
-  final Color? background;
+  final EdgeInsetsGeometry? padding;
+  final OverlayPosition overlayPosition;
+  final OverlayDisplacement? overlayDisplacement;
+  final Color borderColor;
+  final BorderRadiusGeometry? borderRadius;
+  final List<BoxShadow>? boxShadow;
   const _OverlayWidget(
       {required this.content,
       this.top,
@@ -25,15 +26,16 @@ class _OverlayWidget extends StatefulWidget {
       this.bottom,
       this.duration,
       this.width,
-      this.type,
+      required this.type,
       this.onTap,
       this.padding,
       this.margin,
-      this.background,
-      this.reverse,
-      this.height,
-      this.notificationPosition = NotificationPosition.top,
-      this.notificationDisplacement = NotificationDisplacement.none});
+      this.background = Colors.white,
+      this.overlayPosition = OverlayPosition.top,
+      this.overlayDisplacement = OverlayDisplacement.none,
+      required this.borderColor,
+      required this.borderRadius,
+      this.boxShadow});
   @override
   _OverlayWidgetState createState() => _OverlayWidgetState();
 }
@@ -47,8 +49,6 @@ class _OverlayWidgetState extends State<_OverlayWidget>
   void initState() {
     super.initState();
     switch (widget.type) {
-      case OverlayType.dialog:
-      case OverlayType.modal:
       case OverlayType.toast:
         controller = AnimationController(
             duration: const Duration(milliseconds: 250), vsync: this);
@@ -64,16 +64,17 @@ class _OverlayWidgetState extends State<_OverlayWidget>
         });
         break;
       case OverlayType.notification:
-        Offset begin;
-        Offset end;
-        switch (widget.notificationPosition) {
-          case NotificationPosition.top:
-            switch (widget.notificationDisplacement) {
-              case NotificationDisplacement.leftToRight:
+      case OverlayType.snackBar:
+        Offset begin = const Offset(0.0, 0.0);
+        Offset end = const Offset(0.0, 0.0);
+        switch (widget.overlayPosition) {
+          case OverlayPosition.top:
+            switch (widget.overlayDisplacement) {
+              case OverlayDisplacement.leftToRight:
                 begin = const Offset(-2.0, 0.0);
                 end = const Offset(0.0, 0.0);
                 break;
-              case NotificationDisplacement.rightToLeft:
+              case OverlayDisplacement.rightToLeft:
                 begin = const Offset(2.0, 0.0);
                 end = const Offset(0.0, 0.0);
                 break;
@@ -82,13 +83,13 @@ class _OverlayWidgetState extends State<_OverlayWidget>
                 end = const Offset(0.0, 0.0);
             }
             break;
-          case NotificationPosition.bottom:
-            switch (widget.notificationDisplacement) {
-              case NotificationDisplacement.leftToRight:
+          case OverlayPosition.bottom:
+            switch (widget.overlayDisplacement) {
+              case OverlayDisplacement.leftToRight:
                 begin = const Offset(-2.0, 0.0);
                 end = const Offset(0.0, 0.0);
                 break;
-              case NotificationDisplacement.rightToLeft:
+              case OverlayDisplacement.rightToLeft:
                 begin = const Offset(2.0, 0.0);
                 end = const Offset(0.0, 0.0);
                 break;
@@ -96,10 +97,6 @@ class _OverlayWidgetState extends State<_OverlayWidget>
                 begin = const Offset(0.0, 2.0);
                 end = const Offset(0.0, 0.0);
             }
-            break;
-          default:
-            begin = const Offset(0.0, 0.0);
-            end = const Offset(0.0, 0.0);
         }
         controller = AnimationController(
             duration: const Duration(milliseconds: 1300), vsync: this);
@@ -120,24 +117,23 @@ class _OverlayWidgetState extends State<_OverlayWidget>
           }
         });
         break;
-      default:
     }
     controller.forward();
   }
 
   @override
   Widget build(BuildContext context) {
+    double? bottom;
+    if (widget.bottom != null) {
+      bottom = widget.bottom! + MediaQuery.of(context).viewInsets.bottom;
+    }
     switch (widget.type) {
-      case OverlayType.dialog:
-        break;
-      case OverlayType.modal:
-        break;
       case OverlayType.toast:
         return Positioned.fill(
             top: widget.top,
             left: widget.left,
             right: widget.right,
-            bottom: widget.bottom,
+            bottom: bottom,
             child: Align(
               alignment: Alignment.center,
               child: FadeTransition(
@@ -152,11 +148,12 @@ class _OverlayWidgetState extends State<_OverlayWidget>
                       ))),
             ));
       case OverlayType.notification:
+      case OverlayType.snackBar:
         return Positioned.fill(
             top: widget.top,
             left: widget.left,
             right: widget.right,
-            bottom: widget.bottom,
+            bottom: bottom,
             child: Align(
                 alignment: Alignment.center,
                 child: SlideTransition(
@@ -175,29 +172,17 @@ class _OverlayWidgetState extends State<_OverlayWidget>
                               color: Colors.transparent,
                               child: Container(
                                   width: widget.width,
-                                  height: widget.height,
-                                  margin: widget.margin ??
-                                      EdgeInsets.symmetric(
-                                          horizontal: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.05 /
-                                              2),
-                                  padding: widget.padding ??
-                                      const EdgeInsets.symmetric(
-                                          horizontal: 15.0, vertical: 15.0),
+                                  margin: widget.margin,
+                                  padding: widget.padding,
                                   decoration: BoxDecoration(
-                                      border: Border.all(
-                                          color: const Color(0xFFDBDBDB)),
-                                      borderRadius: BorderRadius.circular(16),
-                                      color: widget.background ??
-                                          Colors.transparent),
+                                      border:
+                                          Border.all(color: widget.borderColor),
+                                      borderRadius: widget.borderRadius,
+                                      color: widget.background,
+                                      boxShadow: widget.boxShadow),
                                   child: widget.content)),
                         )))));
-      default:
-        return Container();
     }
-    return Container();
   }
 
   @override
@@ -206,9 +191,3 @@ class _OverlayWidgetState extends State<_OverlayWidget>
     super.dispose();
   }
 }
-
-enum NotificationPosition { top, bottom }
-
-enum NotificationDisplacement { leftToRight, rightToLeft, none }
-
-enum OverlayType { dialog, modal, toast, notification }
