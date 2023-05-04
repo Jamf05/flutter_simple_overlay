@@ -1,5 +1,7 @@
 library simple_overlay;
 
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:simple_overlay/src/enum.dart';
 

@@ -11,8 +11,8 @@ class OverlayWidget extends StatefulWidget {
   final OverlayType type;
   final void Function()? onTap;
   final Color background;
-  final EdgeInsetsGeometry? margin;
-  final EdgeInsetsGeometry? padding;
+  final EdgeInsetsGeometry margin;
+  final EdgeInsetsGeometry padding;
   final OverlayPosition overlayPosition;
   final OverlayDisplacement? overlayDisplacement;
   final Color borderColor;
@@ -31,8 +31,8 @@ class OverlayWidget extends StatefulWidget {
       this.width,
       required this.type,
       this.onTap,
-      this.padding,
-      this.margin,
+      this.padding = EdgeInsets.zero,
+      this.margin = EdgeInsets.zero,
       this.background = Colors.white,
       this.overlayPosition = OverlayPosition.top,
       this.overlayDisplacement = OverlayDisplacement.none,
@@ -177,14 +177,20 @@ class OverlayWidgetState extends State<OverlayWidget>
                               child: Container(
                                   width: widget.width,
                                   margin: widget.margin,
-                                  padding: widget.padding,
+                    
                                   decoration: BoxDecoration(
                                       border:
                                           Border.all(color: widget.borderColor),
                                       borderRadius: widget.borderRadius,
                                       color: widget.background,
                                       boxShadow: widget.boxShadow),
-                                  child: widget.content)),
+                                  child: ClipRRect(
+                                    borderRadius: widget.borderRadius,
+                                child: BackdropFilter(
+                                              filter: ImageFilter.blur(sigmaX: 2.5, sigmaY: 5.0), child: Padding(
+                                                              padding: widget.padding,
+                                                child: widget.content,
+                                              ))))),
                         )))));
     }
   }

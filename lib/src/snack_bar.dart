@@ -2,7 +2,7 @@ part of '../simple_overlay.dart';
 
 abstract class SnackBarOverlayTheme {
   final Widget? icon;
-  final EdgeInsetsGeometry? padding;
+  final EdgeInsetsGeometry padding;
   final EdgeInsetsGeometry? margin;
   final Color background;
   final TextStyle textStyle;

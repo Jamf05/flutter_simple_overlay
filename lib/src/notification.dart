@@ -89,45 +89,42 @@ class NotificationOverlay extends SimpleOverlayInterface {
               borderRadius: theme.borderRadius,
               boxShadow: theme.boxShadow,
               content: body ??
-                  Container(
-                    color: theme.background,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          theme.icon,
+                          SizedBox(
+                            width: multiline ? 5 : 10,
+                          ),
+                          Flexible(
+                              child: Text(
+                            title,
+                            maxLines: theme.titleTextMaxLines,
+                            overflow: theme.titleTextOverflow,
+                            style: theme.titleTextStyle,
+                          )),
+                        ],
+                      ),
+                      if (multiline) ...[
+                        SizedBox(
+                          height: multiline ? 5 : 10,
+                        ),
                         Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            theme.icon,
-                            SizedBox(
-                              width: multiline ? 5 : 10,
-                            ),
                             Flexible(
                                 child: Text(
-                              title,
-                              maxLines: theme.titleTextMaxLines,
-                              overflow: theme.titleTextOverflow,
-                              style: theme.titleTextStyle,
+                              bodyText,
+                              style: theme.bodyTextStyle,
+                              maxLines: theme.bodyTextMaxLines,
+                              overflow: theme.bodyTextOverflow,
                             )),
                           ],
                         ),
-                        if (multiline) ...[
-                          SizedBox(
-                            height: multiline ? 5 : 10,
-                          ),
-                          Row(
-                            children: [
-                              Flexible(
-                                  child: Text(
-                                bodyText,
-                                style: theme.bodyTextStyle,
-                                maxLines: theme.bodyTextMaxLines,
-                                overflow: theme.bodyTextOverflow,
-                              )),
-                            ],
-                          ),
-                        ]
-                      ],
-                    ),
+                      ]
+                    ],
                   ),
               onTap: theme.onTap,
             ));

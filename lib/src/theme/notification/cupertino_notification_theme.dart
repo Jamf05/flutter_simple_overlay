@@ -10,7 +10,6 @@ class CupertinoNotificationTheme extends NotificationOverlayTheme {
       size: 18,
     ),
     super.duration = const Duration(milliseconds: 2500),
-    super.background = CupertinoColors.white,
     super.titleTextStyle =
         const TextStyle(color: Color(0xff212121), fontFamily: '.SF UI Text'),
     super.bodyTextStyle =
@@ -18,9 +17,10 @@ class CupertinoNotificationTheme extends NotificationOverlayTheme {
     super.borderColor = Colors.transparent,
     List<BoxShadow>? boxShadow,
   }) : super(
+    background: Colors.white.withOpacity(0.5),
           boxShadow: boxShadow ??
               <BoxShadow>[
-                const BoxShadow(blurRadius: 6, color: CupertinoColors.black)
+                BoxShadow(blurRadius: 6, color: CupertinoColors.black.withOpacity(0.5))
               ],
         );
 
@@ -41,7 +41,7 @@ class CupertinoNotificationTheme extends NotificationOverlayTheme {
   }) : super(
           boxShadow: boxShadow ??
               <BoxShadow>[
-                const BoxShadow(blurRadius: 6, color: CupertinoColors.black)
+                BoxShadow(blurRadius: 6, color: CupertinoColors.black.withOpacity(0.5))
               ],
         );
 
@@ -104,7 +104,7 @@ class CupertinoNotificationTheme extends NotificationOverlayTheme {
   }) : super(
           boxShadow: boxShadow ??
               <BoxShadow>[
-                const BoxShadow(blurRadius: 6, color: CupertinoColors.black)
+                BoxShadow(blurRadius: 6, color: CupertinoColors.black.withOpacity(0.5))
               ],
         );
 
