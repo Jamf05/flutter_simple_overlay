@@ -3,7 +3,7 @@ part of '../simple_overlay.dart';
 abstract class ToastOverlayTheme {
   final Widget? icon;
   final Color background;
-  final TextStyle? textStyle;
+  final TextStyle textStyle;
   final int textMaxLines;
   final TextOverflow textoverflow;
   final Duration duration;
@@ -17,7 +17,7 @@ abstract class ToastOverlayTheme {
       this.duration = const Duration(milliseconds: 2500),
       this.reverseDuration = const Duration(milliseconds: 3500),
       this.background = Colors.black,
-      this.textStyle,
+      this.textStyle = const TextStyle(),
       this.textMaxLines = 2,
       this.textoverflow = TextOverflow.ellipsis,
       this.overlayPosition = OverlayPosition.bottom,
@@ -85,7 +85,7 @@ class ToastOverlay extends SimpleOverlayInterface {
       default:
     }
     OverlayEntry overlayEntry = OverlayEntry(
-        builder: (context) => _OverlayWidget(
+        builder: (context) => OverlayWidget(
               type: OverlayType.toast,
               top: top,
               left: left,

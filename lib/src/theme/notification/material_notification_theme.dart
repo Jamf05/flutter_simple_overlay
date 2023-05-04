@@ -10,10 +10,16 @@ class MaterialNotificationTheme extends NotificationOverlayTheme {
     ),
     super.duration = const Duration(milliseconds: 2500),
     super.background = Colors.white,
-    super.titleTextStyle =
-        const TextStyle(color: Color(0xff212121), fontFamily: 'Roboto'),
-    super.bodyTextStyle =
-        const TextStyle(color: Color(0xff212121), fontFamily: 'Roboto'),
+    super.titleTextStyle = const TextStyle(
+        color: Color(0xff212121),
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w500,
+        fontSize: 14),
+    super.bodyTextStyle = const TextStyle(
+        color: Color(0xff212121),
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w400,
+        fontSize: 14),
     super.borderColor = Colors.transparent,
     List<BoxShadow>? boxShadow,
   }) : super(
@@ -31,10 +37,16 @@ class MaterialNotificationTheme extends NotificationOverlayTheme {
     ),
     super.duration = const Duration(milliseconds: 2500),
     super.background = const Color(0xff5f7c8a),
-    super.titleTextStyle =
-        const TextStyle(color: Colors.white, fontFamily: 'Roboto'),
-    super.bodyTextStyle =
-        const TextStyle(color: Colors.white, fontFamily: 'Roboto'),
+    super.titleTextStyle = const TextStyle(
+        color: Colors.white,
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w500,
+        fontSize: 14),
+    super.bodyTextStyle = const TextStyle(
+        color: Colors.white,
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w400,
+        fontSize: 14),
     super.borderColor = Colors.transparent,
     List<BoxShadow>? boxShadow,
   }) : super(
@@ -52,10 +64,16 @@ class MaterialNotificationTheme extends NotificationOverlayTheme {
     ),
     super.duration = const Duration(milliseconds: 2500),
     super.background = const Color(0xff4cb050),
-    super.titleTextStyle =
-        const TextStyle(color: Colors.white, fontFamily: 'Roboto'),
-    super.bodyTextStyle =
-        const TextStyle(color: Colors.white, fontFamily: 'Roboto'),
+    super.titleTextStyle = const TextStyle(
+        color: Colors.white,
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w500,
+        fontSize: 14),
+    super.bodyTextStyle = const TextStyle(
+        color: Colors.white,
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w400,
+        fontSize: 14),
     super.borderColor = Colors.transparent,
     List<BoxShadow>? boxShadow,
   }) : super(
@@ -73,10 +91,16 @@ class MaterialNotificationTheme extends NotificationOverlayTheme {
     ),
     super.duration = const Duration(milliseconds: 2500),
     super.background = const Color(0xffff9700),
-    super.titleTextStyle =
-        const TextStyle(color: Colors.white, fontFamily: 'Roboto'),
-    super.bodyTextStyle =
-        const TextStyle(color: Colors.white, fontFamily: 'Roboto'),
+    super.titleTextStyle = const TextStyle(
+        color: Colors.white,
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w500,
+        fontSize: 14),
+    super.bodyTextStyle = const TextStyle(
+        color: Colors.white,
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w400,
+        fontSize: 14),
     super.borderColor = Colors.transparent,
     List<BoxShadow>? boxShadow,
   }) : super(
@@ -94,10 +118,16 @@ class MaterialNotificationTheme extends NotificationOverlayTheme {
     ),
     super.duration = const Duration(milliseconds: 2500),
     super.background = const Color(0xfff44236),
-    super.titleTextStyle =
-        const TextStyle(color: Colors.white, fontFamily: 'Roboto'),
-    super.bodyTextStyle =
-        const TextStyle(color: Colors.white, fontFamily: 'Roboto'),
+    super.titleTextStyle = const TextStyle(
+        color: Colors.white,
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w500,
+        fontSize: 14),
+    super.bodyTextStyle = const TextStyle(
+        color: Colors.white,
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w400,
+        fontSize: 14),
     super.borderColor = Colors.transparent,
     List<BoxShadow>? boxShadow,
   }) : super(
@@ -115,10 +145,16 @@ class MaterialNotificationTheme extends NotificationOverlayTheme {
     ),
     super.duration = const Duration(milliseconds: 2500),
     super.background = const Color(0xff3f51b5),
-    super.titleTextStyle =
-        const TextStyle(color: Colors.white, fontFamily: 'Roboto'),
-    super.bodyTextStyle =
-        const TextStyle(color: Colors.white, fontFamily: 'Roboto'),
+    super.titleTextStyle = const TextStyle(
+        color: Colors.white,
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w500,
+        fontSize: 14),
+    super.bodyTextStyle = const TextStyle(
+        color: Colors.white,
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w400,
+        fontSize: 14),
     super.borderColor = Colors.transparent,
     List<BoxShadow>? boxShadow,
   }) : super(

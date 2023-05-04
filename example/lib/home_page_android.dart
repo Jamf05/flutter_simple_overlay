@@ -145,7 +145,7 @@ class _HomePageAndroidState extends State<HomePageAndroid> {
               const Divider(),
               ElevatedButton(
                   onPressed: () => CustomOverlays.of(context).snackBar(
-                      "Deserunt ipsum aute magna enim ex aliqua."),
+                      "Deserunt ipsum aute. Est ex laboris aute amet cillum sint anim commodo nostrud voluptate aliquip."),
                   child: const Text("SnackBar")),
             ],
           ),

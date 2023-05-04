@@ -2,16 +2,16 @@ part of '../simple_overlay.dart';
 
 abstract class NotificationOverlayTheme {
   final Widget icon;
-  final EdgeInsetsGeometry? padding;
+  final EdgeInsetsGeometry padding;
   final EdgeInsetsGeometry? margin;
   final Duration duration;
   final Duration reverseDuration;
   final void Function()? onTap;
   final Color background;
-  final TextStyle? titleTextStyle;
+  final TextStyle titleTextStyle;
   final int titleTextMaxLines;
   final TextOverflow titleTextOverflow;
-  final TextStyle? bodyTextStyle;
+  final TextStyle bodyTextStyle;
   final int bodyTextMaxLines;
   final TextOverflow bodyTextOverflow;
   final Color borderColor;
@@ -20,16 +20,18 @@ abstract class NotificationOverlayTheme {
 
   NotificationOverlayTheme({
     required this.icon,
-    this.padding,
+    this.padding = const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
     this.margin,
     this.duration = const Duration(seconds: 5),
     this.reverseDuration = const Duration(seconds: 10),
     this.onTap,
     this.background = Colors.white,
-    this.titleTextStyle,
+    this.titleTextStyle =
+        const TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
     this.titleTextMaxLines = 1,
     this.titleTextOverflow = TextOverflow.ellipsis,
-    this.bodyTextStyle,
+    this.bodyTextStyle =
+        const TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
     this.bodyTextMaxLines = 2,
     this.bodyTextOverflow = TextOverflow.ellipsis,
     this.borderColor = const Color(0xFFDBDBDB),
@@ -67,7 +69,7 @@ class NotificationOverlay extends SimpleOverlayInterface {
     }
     bool multiline = bodyText != null && bodyText.isNotEmpty;
     OverlayEntry overlayEntry = OverlayEntry(
-        builder: (context) => _OverlayWidget(
+        builder: (context) => OverlayWidget(
               type: OverlayType.notification,
               top: top,
               left: left,
@@ -77,8 +79,7 @@ class NotificationOverlay extends SimpleOverlayInterface {
               overlayPosition: overlayPosition,
               overlayDisplacement: overlayDisplacement,
               width: size.width * 0.975,
-              padding: theme.padding ??
-                  const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
+              padding: theme.padding,
               margin: theme.margin ??
                   EdgeInsets.symmetric(
                       horizontal:

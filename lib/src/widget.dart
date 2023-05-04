@@ -1,6 +1,6 @@
 part of '../simple_overlay.dart';
 
-class _OverlayWidget extends StatefulWidget {
+class OverlayWidget extends StatefulWidget {
   final Widget? content;
   final double? top;
   final double? left;
@@ -18,8 +18,11 @@ class _OverlayWidget extends StatefulWidget {
   final Color borderColor;
   final BorderRadiusGeometry? borderRadius;
   final List<BoxShadow>? boxShadow;
-  const _OverlayWidget(
-      {required this.content,
+  final void Function(AnimationController)? controller;
+  const OverlayWidget(
+      {super.key,
+      required this.content,
+      this.controller,
       this.top,
       this.left,
       this.right,
@@ -37,10 +40,10 @@ class _OverlayWidget extends StatefulWidget {
       required this.borderRadius,
       this.boxShadow});
   @override
-  _OverlayWidgetState createState() => _OverlayWidgetState();
+  OverlayWidgetState createState() => OverlayWidgetState();
 }
 
-class _OverlayWidgetState extends State<_OverlayWidget>
+class OverlayWidgetState extends State<OverlayWidget>
     with TickerProviderStateMixin {
   late AnimationController controller;
   late Animation<double> animation;
@@ -119,6 +122,7 @@ class _OverlayWidgetState extends State<_OverlayWidget>
         break;
     }
     controller.forward();
+    widget.controller?.call(controller);
   }
 
   @override
