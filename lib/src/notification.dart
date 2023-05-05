@@ -15,29 +15,35 @@ abstract class NotificationOverlayTheme {
   final int bodyTextMaxLines;
   final TextOverflow bodyTextOverflow;
   final Color borderColor;
+  final double borderWidth;
   final BorderRadiusGeometry borderRadius;
   final List<BoxShadow>? boxShadow;
+  final ImageFilter filter;
 
-  NotificationOverlayTheme({
-    required this.icon,
-    this.padding = const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
-    this.margin,
-    this.duration = const Duration(seconds: 5),
-    this.reverseDuration = const Duration(seconds: 10),
-    this.onTap,
-    this.background = Colors.white,
-    this.titleTextStyle =
-        const TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
-    this.titleTextMaxLines = 1,
-    this.titleTextOverflow = TextOverflow.ellipsis,
-    this.bodyTextStyle =
-        const TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
-    this.bodyTextMaxLines = 2,
-    this.bodyTextOverflow = TextOverflow.ellipsis,
-    this.borderColor = const Color(0xFFDBDBDB),
-    BorderRadiusGeometry? borderRadius,
-    this.boxShadow,
-  }) : borderRadius = borderRadius ?? BorderRadius.circular(8.0);
+  NotificationOverlayTheme(
+      {required this.icon,
+      this.padding =
+          const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
+      this.margin,
+      this.duration = const Duration(seconds: 5),
+      this.reverseDuration = const Duration(seconds: 10),
+      this.onTap,
+      this.background = Colors.white,
+      this.titleTextStyle =
+          const TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
+      this.titleTextMaxLines = 1,
+      this.titleTextOverflow = TextOverflow.ellipsis,
+      this.bodyTextStyle =
+          const TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
+      this.bodyTextMaxLines = 2,
+      this.bodyTextOverflow = TextOverflow.ellipsis,
+      this.borderColor = const Color(0xFFDBDBDB),
+      this.borderWidth = 0,
+      BorderRadiusGeometry? borderRadius,
+      ImageFilter? filter,
+      this.boxShadow})
+      : filter = filter ?? ImageFilter.blur(sigmaX: 0, sigmaY: 0),
+        borderRadius = borderRadius ?? BorderRadius.circular(8.0);
 }
 
 class NotificationOverlay extends SimpleOverlayInterface {
@@ -86,8 +92,10 @@ class NotificationOverlay extends SimpleOverlayInterface {
                           MediaQuery.of(context).size.width * 0.025 / 2),
               background: theme.background,
               borderColor: theme.borderColor,
+              borderWidth: theme.borderWidth,
               borderRadius: theme.borderRadius,
               boxShadow: theme.boxShadow,
+              filter: theme.filter,
               content: body ??
                   Column(
                     mainAxisSize: MainAxisSize.min,

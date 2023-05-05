@@ -19,10 +19,11 @@ class _HomePageIosState extends State<HomePageIos> {
       onWillPop: () async => false,
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
-        body: Center(
+        body: Container(
+          alignment: Alignment.center,
+          decoration: const BoxDecoration(
+              image: DecorationImage(
+                  image: NetworkImage('https://www.iclarified.com/images/news/86246/417032/417032-1280.jpg'))),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[

@@ -16,10 +16,12 @@ class OverlayWidget extends StatefulWidget {
   final OverlayPosition overlayPosition;
   final OverlayDisplacement? overlayDisplacement;
   final Color borderColor;
+  final double borderWidth;
   final BorderRadiusGeometry? borderRadius;
   final List<BoxShadow>? boxShadow;
   final void Function(AnimationController)? controller;
-  const OverlayWidget(
+  final ImageFilter filter;
+  OverlayWidget(
       {super.key,
       required this.content,
       this.controller,
@@ -37,8 +39,11 @@ class OverlayWidget extends StatefulWidget {
       this.overlayPosition = OverlayPosition.top,
       this.overlayDisplacement = OverlayDisplacement.none,
       required this.borderColor,
+      this.borderWidth = 0,
       required this.borderRadius,
-      this.boxShadow});
+      ImageFilter? filter,
+      this.boxShadow})
+      : filter = filter ?? ImageFilter.blur(sigmaX: 0, sigmaY: 0);
   @override
   OverlayWidgetState createState() => OverlayWidgetState();
 }
@@ -177,20 +182,21 @@ class OverlayWidgetState extends State<OverlayWidget>
                               child: Container(
                                   width: widget.width,
                                   margin: widget.margin,
-                    
                                   decoration: BoxDecoration(
-                                      border:
-                                          Border.all(color: widget.borderColor),
+                                      border: Border.all(
+                                          color: widget.borderColor,
+                                          width: widget.borderWidth),
                                       borderRadius: widget.borderRadius,
                                       color: widget.background,
                                       boxShadow: widget.boxShadow),
                                   child: ClipRRect(
-                                    borderRadius: widget.borderRadius,
-                                child: BackdropFilter(
-                                              filter: ImageFilter.blur(sigmaX: 2.5, sigmaY: 5.0), child: Padding(
-                                                              padding: widget.padding,
-                                                child: widget.content,
-                                              ))))),
+                                      borderRadius: widget.borderRadius,
+                                      child: BackdropFilter(
+                                          filter: widget.filter,
+                                          child: Padding(
+                                            padding: widget.padding,
+                                            child: widget.content,
+                                          ))))),
                         )))));
     }
   }
