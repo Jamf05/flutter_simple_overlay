@@ -113,7 +113,7 @@ class CupertinoNotificationTheme extends NotificationOverlayTheme {
           filter: filter ?? ImageFilter.blur(sigmaX: 30.0, sigmaY: 30.0),
           icon: RoundIconWithBlurredBackground(
             background: const Color.fromARGB(255, 0, 105, 4),
-            child: const Icon(
+            child: icon ?? const Icon(
               CupertinoIcons.checkmark_alt_circle_fill,
               color: Color(0xff4cb050),
               size: 25,
@@ -151,7 +151,7 @@ class CupertinoNotificationTheme extends NotificationOverlayTheme {
           filter: filter ?? ImageFilter.blur(sigmaX: 30.0, sigmaY: 30.0),
           icon: RoundIconWithBlurredBackground(
             background: const Color(0xff212121),
-            child: const Icon(
+            child: icon ?? const Icon(
               CupertinoIcons.hand_raised_fill,
               color: Color(0xff212121),
               size: 25,
@@ -227,7 +227,7 @@ class CupertinoNotificationTheme extends NotificationOverlayTheme {
           filter: filter ?? ImageFilter.blur(sigmaX: 30.0, sigmaY: 30.0),
           icon: RoundIconWithBlurredBackground(
             background: const Color(0xff212121),
-            child: const Icon(
+            child: icon ?? const Icon(
               CupertinoIcons.exclamationmark_circle,
               color: Color(0xff212121),
               size: 25,
