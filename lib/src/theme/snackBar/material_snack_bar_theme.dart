@@ -17,7 +17,7 @@ class MaterialSnackBarTheme extends SnackBarOverlayTheme {
     List<BoxShadow>? boxShadow,
     super.textActionButton = "Action",
     super.heightActionButton = 20.0,
-    ButtonStyle? styleCloseButton,
+    super.styleActionButton,
   }) : super(
           borderRadius: BorderRadius.circular(8.0),
           boxShadow: boxShadow ??

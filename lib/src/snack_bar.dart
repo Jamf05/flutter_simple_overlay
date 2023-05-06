@@ -28,7 +28,7 @@ abstract class SnackBarOverlayTheme {
     this.boxShadow,
     this.textActionButton = "Action",
     this.heightActionButton = 20.0,
-    ButtonStyle? styleCloseButton,
+    ButtonStyle? styleActionButton,
   })  : borderRadius = borderRadius ?? BorderRadius.circular(20),
         styleActionButton =
             TextButton.styleFrom(padding: const EdgeInsets.all(0));
