@@ -23,7 +23,9 @@ class _HomePageIosState extends State<HomePageIos> {
           alignment: Alignment.center,
           decoration: const BoxDecoration(
               image: DecorationImage(
-                  image: NetworkImage('https://www.iclarified.com/images/news/86246/417032/417032-1280.jpg'))),
+                  fit: BoxFit.cover,
+                  image: NetworkImage(
+                      'https://www.iclarified.com/images/news/86246/417032/417032-1280.jpg'))),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
