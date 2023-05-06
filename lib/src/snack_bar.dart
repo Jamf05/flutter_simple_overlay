@@ -1,7 +1,6 @@
 part of '../simple_overlay.dart';
 
 abstract class SnackBarOverlayTheme {
-  final Widget? icon;
   final EdgeInsetsGeometry padding;
   final EdgeInsetsGeometry? margin;
   final Color background;
@@ -17,7 +16,6 @@ abstract class SnackBarOverlayTheme {
   final List<BoxShadow>? boxShadow;
 
   SnackBarOverlayTheme({
-    this.icon,
     this.padding = const EdgeInsets.symmetric(horizontal: 16.0, vertical: 15.0),
     this.margin,
     this.duration = const Duration(seconds: 4),
