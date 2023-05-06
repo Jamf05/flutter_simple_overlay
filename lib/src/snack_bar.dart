@@ -30,7 +30,7 @@ abstract class SnackBarOverlayTheme {
     this.heightActionButton = 20.0,
     ButtonStyle? styleActionButton,
   })  : borderRadius = borderRadius ?? BorderRadius.circular(20),
-        styleActionButton =
+        styleActionButton = styleActionButton ??
             TextButton.styleFrom(padding: const EdgeInsets.all(0));
 }
 
