@@ -54,33 +54,18 @@ class NotificationOverlay extends SimpleOverlayInterface {
       {String? bodyText,
       Widget? body,
       required NotificationOverlayTheme theme,
-      OverlayPosition overlayPosition = OverlayPosition.top,
-      OverlayDisplacement overlayDisplacement = OverlayDisplacement.none}) {
+      OverlayPosition overlayPosition = const OverlayPosition.top(),
+      OverlayDisplacement overlayDisplacement = OverlayDisplacement.none,
+      bool bottomNavigationBar = false}) {
     OverlayState? overlayState = Overlay.of(context);
-    double? top, left, right, bottom;
-    switch (overlayPosition) {
-      case OverlayPosition.top:
-        top = 10;
-        left = null;
-        right = null;
-        bottom = null;
-        break;
-      case OverlayPosition.bottom:
-        top = null;
-        left = null;
-        right = null;
-        bottom = 10;
-        break;
-      default:
-    }
     bool multiline = bodyText != null && bodyText.isNotEmpty;
     OverlayEntry overlayEntry = OverlayEntry(
         builder: (context) => OverlayWidget(
               type: OverlayType.notification,
-              top: top,
-              left: left,
-              bottom: bottom,
-              right: right,
+              top: overlayPosition.top,
+              left: overlayPosition.left,
+              bottom: overlayPosition.bottom,
+              right: overlayPosition.right,
               duration: theme.duration,
               overlayPosition: overlayPosition,
               overlayDisplacement: overlayDisplacement,
@@ -96,6 +81,7 @@ class NotificationOverlay extends SimpleOverlayInterface {
               borderRadius: theme.borderRadius,
               boxShadow: theme.boxShadow,
               filter: theme.filter,
+              bottomNavigationBar: bottomNavigationBar,
               content: body ??
                   Column(
                     mainAxisSize: MainAxisSize.min,

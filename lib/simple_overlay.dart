@@ -4,6 +4,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:simple_overlay/src/enum.dart';
+import 'package:simple_overlay/src/overlay_position.dart';
 
 export 'src/custom.dart';
 export 'src/theme/toast/cupertino_toast_theme.dart';
@@ -11,6 +12,7 @@ export 'src/theme/toast/material_toast_theme.dart';
 export 'src/theme/notification/material_notification_theme.dart';
 export 'src/theme/notification/cupertino_notification_theme.dart';
 export 'src/theme/snackBar/material_snack_bar_theme.dart';
+export 'src/overlay_position.dart';
 export 'src/enum.dart';
 
 part 'src/notification.dart';

@@ -21,6 +21,7 @@ class OverlayWidget extends StatefulWidget {
   final List<BoxShadow>? boxShadow;
   final void Function(AnimationController)? controller;
   final ImageFilter filter;
+  final bool bottomNavigationBar;
   OverlayWidget(
       {super.key,
       required this.content,
@@ -36,13 +37,14 @@ class OverlayWidget extends StatefulWidget {
       this.padding = EdgeInsets.zero,
       this.margin = EdgeInsets.zero,
       this.background = Colors.white,
-      this.overlayPosition = OverlayPosition.top,
+      this.overlayPosition = const OverlayPosition.top(),
       this.overlayDisplacement = OverlayDisplacement.none,
       required this.borderColor,
       this.borderWidth = 0,
       required this.borderRadius,
       ImageFilter? filter,
-      this.boxShadow})
+      this.boxShadow,
+      this.bottomNavigationBar = false})
       : filter = filter ?? ImageFilter.blur(sigmaX: 0, sigmaY: 0);
   @override
   OverlayWidgetState createState() => OverlayWidgetState();
@@ -75,36 +77,34 @@ class OverlayWidgetState extends State<OverlayWidget>
       case OverlayType.snackBar:
         Offset begin = const Offset(0.0, 0.0);
         Offset end = const Offset(0.0, 0.0);
-        switch (widget.overlayPosition) {
-          case OverlayPosition.top:
-            switch (widget.overlayDisplacement) {
-              case OverlayDisplacement.leftToRight:
-                begin = const Offset(-2.0, 0.0);
-                end = const Offset(0.0, 0.0);
-                break;
-              case OverlayDisplacement.rightToLeft:
-                begin = const Offset(2.0, 0.0);
-                end = const Offset(0.0, 0.0);
-                break;
-              default:
-                begin = const Offset(0.0, -2.0);
-                end = const Offset(0.0, 0.0);
-            }
-            break;
-          case OverlayPosition.bottom:
-            switch (widget.overlayDisplacement) {
-              case OverlayDisplacement.leftToRight:
-                begin = const Offset(-2.0, 0.0);
-                end = const Offset(0.0, 0.0);
-                break;
-              case OverlayDisplacement.rightToLeft:
-                begin = const Offset(2.0, 0.0);
-                end = const Offset(0.0, 0.0);
-                break;
-              default:
-                begin = const Offset(0.0, 2.0);
-                end = const Offset(0.0, 0.0);
-            }
+        if (widget.overlayPosition.isTop) {
+          switch (widget.overlayDisplacement) {
+            case OverlayDisplacement.leftToRight:
+              begin = const Offset(-2.0, 0.0);
+              end = const Offset(0.0, 0.0);
+              break;
+            case OverlayDisplacement.rightToLeft:
+              begin = const Offset(2.0, 0.0);
+              end = const Offset(0.0, 0.0);
+              break;
+            default:
+              begin = const Offset(0.0, -2.0);
+              end = const Offset(0.0, 0.0);
+          }
+        } else if (widget.overlayPosition.isBottom) {
+          switch (widget.overlayDisplacement) {
+            case OverlayDisplacement.leftToRight:
+              begin = const Offset(-2.0, 0.0);
+              end = const Offset(0.0, 0.0);
+              break;
+            case OverlayDisplacement.rightToLeft:
+              begin = const Offset(2.0, 0.0);
+              end = const Offset(0.0, 0.0);
+              break;
+            default:
+              begin = const Offset(0.0, 2.0);
+              end = const Offset(0.0, 0.0);
+          }
         }
         controller = AnimationController(
             duration: const Duration(milliseconds: 1300), vsync: this);
@@ -134,7 +134,11 @@ class OverlayWidgetState extends State<OverlayWidget>
   Widget build(BuildContext context) {
     double? bottom;
     if (widget.bottom != null) {
-      bottom = widget.bottom! + MediaQuery.of(context).viewInsets.bottom;
+      final keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
+      bottom = widget.bottom! + keyboardHeight;
+      if (keyboardHeight == 0 && widget.bottomNavigationBar) {
+        bottom = bottom + kBottomNavigationBarHeight;
+      }
     }
     switch (widget.type) {
       case OverlayType.toast:

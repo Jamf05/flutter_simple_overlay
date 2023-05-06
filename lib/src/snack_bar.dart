@@ -39,36 +39,20 @@ class SnackBarOverlay extends SimpleOverlayInterface {
   static SnackBarOverlay of(BuildContext context) => SnackBarOverlay._(context);
   void snackBar(String messaje,
       {required SnackBarOverlayTheme theme,
-      OverlayPosition overlayPosition = OverlayPosition.bottom,
+      OverlayPosition overlayPosition = const OverlayPosition.bottom(),
       OverlayDisplacement overlayDisplacement =
-          OverlayDisplacement.none}) async {
+          OverlayDisplacement.none, bool bottomNavigationBar = false}) async {
     OverlayState? overlayState = Overlay.of(context);
     late AnimationController controller;
-    double? top, left, right, bottom;
-    switch (overlayPosition) {
-      case OverlayPosition.top:
-        top = 10;
-        left = null;
-        right = null;
-        bottom = null;
-        break;
-      case OverlayPosition.bottom:
-        top = null;
-        left = null;
-        right = null;
-        bottom = 10;
-        break;
-      default:
-    }
     late OverlayEntry overlayEntry;
     overlayEntry = OverlayEntry(
         builder: (context) => OverlayWidget(
               controller: (value) => controller = value,
               type: OverlayType.snackBar,
-              top: top,
-              left: left,
-              bottom: bottom,
-              right: right,
+              top: overlayPosition.top,
+              left: overlayPosition.left,
+              bottom: overlayPosition.bottom,
+              right: overlayPosition.right,
               duration: theme.duration,
               overlayPosition: overlayPosition,
               overlayDisplacement: overlayDisplacement,
@@ -81,6 +65,7 @@ class SnackBarOverlay extends SimpleOverlayInterface {
               borderColor: Colors.transparent,
               borderRadius: theme.borderRadius,
               boxShadow: theme.boxShadow,
+              bottomNavigationBar: bottomNavigationBar,
               content: Container(
                 color: theme.background,
                 child: Row(

@@ -9,8 +9,6 @@ abstract class ToastOverlayTheme {
   final Duration duration;
   final Duration reverseDuration;
   final BorderRadiusGeometry borderRadius;
-  final OverlayPosition overlayPosition;
-  final OverlayDisplacement overlayDisplacement;
 
   ToastOverlayTheme(
       {this.icon,
@@ -20,8 +18,6 @@ abstract class ToastOverlayTheme {
       this.textStyle = const TextStyle(),
       this.textMaxLines = 2,
       this.textoverflow = TextOverflow.ellipsis,
-      this.overlayPosition = OverlayPosition.bottom,
-      this.overlayDisplacement = OverlayDisplacement.none,
       BorderRadiusGeometry? borderRadius})
       : borderRadius = borderRadius ?? BorderRadius.circular(20);
 }
@@ -29,7 +25,12 @@ abstract class ToastOverlayTheme {
 class ToastOverlay extends SimpleOverlayInterface {
   ToastOverlay._(super.context);
   static ToastOverlay of(BuildContext context) => ToastOverlay._(context);
-  void toast(String messaje, {required ToastOverlayTheme theme}) async {
+  void toast(
+    String messaje, {
+    required ToastOverlayTheme theme,
+    OverlayPosition overlayPosition = const OverlayPosition.top(),
+    bool bottomNavigationBar = false
+  }) async {
     Widget text = Text(
       messaje,
       style: theme.textStyle,
@@ -68,37 +69,22 @@ class ToastOverlay extends SimpleOverlayInterface {
     );
 
     OverlayState? overlayState = Overlay.of(context);
-    double? top, left, right, bottom;
-    switch (theme.overlayPosition) {
-      case OverlayPosition.top:
-        top = 10;
-        left = null;
-        right = null;
-        bottom = null;
-        break;
-      case OverlayPosition.bottom:
-        top = null;
-        left = null;
-        right = null;
-        bottom = 10;
-        break;
-      default:
-    }
     OverlayEntry overlayEntry = OverlayEntry(
         builder: (context) => OverlayWidget(
               type: OverlayType.toast,
-              top: top,
-              left: left,
-              right: right,
-              bottom: bottom,
+              top: overlayPosition.top,
+              left: overlayPosition.left,
+              right: overlayPosition.right,
+              bottom: overlayPosition.bottom,
               content: content,
               width: size.width,
               duration: theme.duration,
               background: theme.background,
-              overlayPosition: theme.overlayPosition,
-              overlayDisplacement: theme.overlayDisplacement,
+              overlayPosition: overlayPosition,
+              overlayDisplacement: OverlayDisplacement.none,
               borderColor: Colors.transparent,
               borderRadius: theme.borderRadius,
+              bottomNavigationBar: bottomNavigationBar,
             ));
     overlayState.insert(overlayEntry);
     Future.delayed(theme.reverseDuration).then((_) {

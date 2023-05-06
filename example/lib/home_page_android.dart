@@ -22,6 +22,13 @@ class _HomePageAndroidState extends State<HomePageAndroid> {
         appBar: AppBar(
           title: Text(widget.title),
         ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: const [
+            BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'Menu'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.radio_button_checked), label: 'Radio')
+          ],
+        ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -35,7 +42,8 @@ class _HomePageAndroidState extends State<HomePageAndroid> {
                           bodyText:
                               "Consectetur eiusmod laborum culpa nostrud deserunt. Sint laboris eiusmod sint ea reprehenderit. Incididunt elit enim dolore veniam aliquip adipisicing ullamco elit nulla officia amet reprehenderit labore.",
                           overlayDisplacement: OverlayDisplacement.rightToLeft,
-                          overlayPosition: OverlayPosition.bottom,
+                          overlayPosition: const OverlayPosition.bottom(),
+                          bottomNavigationBar: true,
                           theme: MaterialNotificationTheme.reload()),
                       child: const Text("Notification (reload)")),
                   const SizedBox(
@@ -64,7 +72,8 @@ class _HomePageAndroidState extends State<HomePageAndroid> {
                   ElevatedButton(
                       onPressed: () => CustomOverlays.of(context).notification(
                           "Labore non non elit occaecat qui quis.",
-                          overlayPosition: OverlayPosition.bottom,
+                          overlayPosition: const OverlayPosition.bottom(),
+                          bottomNavigationBar: true,
                           theme: MaterialNotificationTheme.error()),
                       child: const Text("Notification (error)")),
                 ],
@@ -94,6 +103,8 @@ class _HomePageAndroidState extends State<HomePageAndroid> {
                   ElevatedButton(
                       onPressed: () => CustomOverlays.of(context).toast(
                           "Do est sunt ad commodo aliqua ut enim ullamco sint laboris aliqua qui labore.",
+                          overlayPosition: const OverlayPosition.bottom(),
+                          bottomNavigationBar: true,
                           theme: MaterialToastTheme.reload()),
                       child: const Text("Toast (reload)")),
                   const SizedBox(
@@ -102,6 +113,8 @@ class _HomePageAndroidState extends State<HomePageAndroid> {
                   ElevatedButton(
                       onPressed: () => CustomOverlays.of(context).toast(
                           "Est non quis minim nostrud minim minim.",
+                          overlayPosition: const OverlayPosition.bottom(),
+                          bottomNavigationBar: true,
                           theme: MaterialToastTheme.success()),
                       child: const Text("Toast (success)")),
                 ],
@@ -112,6 +125,8 @@ class _HomePageAndroidState extends State<HomePageAndroid> {
                   ElevatedButton(
                       onPressed: () => CustomOverlays.of(context).toast(
                           "Consectetur reprehenderit non tempor nulla nisi nulla.",
+                          overlayPosition: const OverlayPosition.bottom(),
+                          bottomNavigationBar: true,
                           theme: MaterialToastTheme.stop()),
                       child: const Text("Toast (stop)")),
                   const SizedBox(
@@ -120,6 +135,8 @@ class _HomePageAndroidState extends State<HomePageAndroid> {
                   ElevatedButton(
                       onPressed: () => CustomOverlays.of(context).toast(
                           "Labore non non elit occaecat qui quis.",
+                          overlayPosition: const OverlayPosition.bottom(),
+                          bottomNavigationBar: true,
                           theme: MaterialToastTheme.error()),
                       child: const Text("Toast (error)")),
                 ],
@@ -130,6 +147,8 @@ class _HomePageAndroidState extends State<HomePageAndroid> {
                   ElevatedButton(
                       onPressed: () => CustomOverlays.of(context).toast(
                           "Amet nisi irure.",
+                          overlayPosition: const OverlayPosition.bottom(),
+                          bottomNavigationBar: true,
                           theme: MaterialToastTheme()),
                       child: const Text("Toast")),
                   const SizedBox(
@@ -138,6 +157,8 @@ class _HomePageAndroidState extends State<HomePageAndroid> {
                   ElevatedButton(
                       onPressed: () => CustomOverlays.of(context).toast(
                           "Adipisicing id eiusmod consequat sit dolor. Amet aute dolor dolore ipsum proident consectetur sint labore do aliqua ullamco nulla sit. Ex proident nulla proident anim amet nulla velit aliquip do ipsum dolor dolore id. In elit elit non eu esse sint voluptate et anim sint quis et excepteur non.",
+                          overlayPosition: const OverlayPosition.bottom(),
+                          bottomNavigationBar: true,
                           theme: MaterialToastTheme.warning()),
                       child: const Text("Toast (warning)")),
                 ],
@@ -145,7 +166,10 @@ class _HomePageAndroidState extends State<HomePageAndroid> {
               const Divider(),
               ElevatedButton(
                   onPressed: () => CustomOverlays.of(context).snackBar(
-                      "Deserunt ipsum aute. Est ex laboris aute amet cillum sint anim commodo nostrud voluptate aliquip."),
+                        "Deserunt ipsum aute. Est ex laboris aute amet cillum sint anim commodo nostrud voluptate aliquip.",
+                        overlayPosition: const OverlayPosition.bottom(),
+                        bottomNavigationBar: true,
+                      ),
                   child: const Text("SnackBar")),
             ],
           ),

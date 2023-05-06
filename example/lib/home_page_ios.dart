@@ -38,7 +38,7 @@ class _HomePageIosState extends State<HomePageIos> {
                           bodyText:
                               "Consectetur eiusmod laborum culpa nostrud deserunt. Sint laboris eiusmod sint ea reprehenderit. Incididunt elit enim dolore veniam aliquip adipisicing ullamco elit nulla officia amet reprehenderit labore.",
                           overlayDisplacement: OverlayDisplacement.rightToLeft,
-                          overlayPosition: OverlayPosition.bottom,
+                          overlayPosition: const OverlayPosition.bottom(),
                           theme: CupertinoNotificationTheme.reload()),
                       child: const Text("Notification (reload)")),
                   const SizedBox(
@@ -67,7 +67,7 @@ class _HomePageIosState extends State<HomePageIos> {
                   ElevatedButton(
                       onPressed: () => CustomOverlays.of(context).notification(
                           "Labore non non elit occaecat qui quis.",
-                          overlayPosition: OverlayPosition.bottom,
+                          overlayPosition: const OverlayPosition.bottom(),
                           theme: CupertinoNotificationTheme.error()),
                       child: const Text("Notification (error)")),
                 ],

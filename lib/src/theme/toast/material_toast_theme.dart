@@ -3,10 +3,14 @@ import 'package:simple_overlay/simple_overlay.dart';
 
 class MaterialToastTheme extends ToastOverlayTheme {
   MaterialToastTheme({
+    super.icon,
     super.duration = const Duration(milliseconds: 2500),
     super.background = const Color(0xff3c3b39),
     super.textStyle =
         const TextStyle(color: Colors.white, fontFamily: 'Roboto'),
+    super.textMaxLines,
+    super.textoverflow,
+    super.reverseDuration,
   }) : super(borderRadius: BorderRadius.circular(40));
 
   MaterialToastTheme.reload({
@@ -18,6 +22,9 @@ class MaterialToastTheme extends ToastOverlayTheme {
     super.background = const Color(0xff5f7c8a),
     super.textStyle =
         const TextStyle(color: Colors.white, fontFamily: 'Roboto'),
+    super.textMaxLines,
+    super.textoverflow,
+    super.reverseDuration,
   }) : super(borderRadius: BorderRadius.circular(40));
 
   MaterialToastTheme.success({
@@ -29,6 +36,9 @@ class MaterialToastTheme extends ToastOverlayTheme {
     super.background = const Color(0xff4cb050),
     super.textStyle =
         const TextStyle(color: Colors.white, fontFamily: 'Roboto'),
+    super.textMaxLines,
+    super.textoverflow,
+    super.reverseDuration,
   }) : super(borderRadius: BorderRadius.circular(40));
 
   MaterialToastTheme.stop({
@@ -40,6 +50,9 @@ class MaterialToastTheme extends ToastOverlayTheme {
     super.background = const Color(0xffff9700),
     super.textStyle =
         const TextStyle(color: Colors.white, fontFamily: 'Roboto'),
+    super.textMaxLines,
+    super.textoverflow,
+    super.reverseDuration,
   }) : super(borderRadius: BorderRadius.circular(40));
 
   MaterialToastTheme.error({
@@ -51,6 +64,9 @@ class MaterialToastTheme extends ToastOverlayTheme {
     super.background = const Color(0xfff44236),
     super.textStyle =
         const TextStyle(color: Colors.white, fontFamily: 'Roboto'),
+    super.textMaxLines,
+    super.textoverflow,
+    super.reverseDuration,
   }) : super(borderRadius: BorderRadius.circular(40));
 
   MaterialToastTheme.warning({
@@ -62,5 +78,8 @@ class MaterialToastTheme extends ToastOverlayTheme {
     super.background = const Color(0xff3f51b5),
     super.textStyle =
         const TextStyle(color: Colors.white, fontFamily: 'Roboto'),
+    super.textMaxLines,
+    super.textoverflow,
+    super.reverseDuration,
   }) : super(borderRadius: BorderRadius.circular(40));
 }
