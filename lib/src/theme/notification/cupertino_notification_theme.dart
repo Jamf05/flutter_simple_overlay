@@ -9,6 +9,7 @@ class CupertinoNotificationTheme extends NotificationOverlayTheme {
   CupertinoNotificationTheme({
     Widget? icon,
     Color? background,
+    super.widthFactor = 0.975,
     super.duration = const Duration(milliseconds: 2500),
     super.titleTextStyle = const TextStyle(
         color: Color(0xff212121),
@@ -48,6 +49,7 @@ class CupertinoNotificationTheme extends NotificationOverlayTheme {
     Widget? icon,
     super.duration = const Duration(milliseconds: 2500),
     Color? background,
+    super.widthFactor = 0.975,
     super.titleTextStyle = const TextStyle(
         color: Color(0xff212121),
         fontFamily: '.SF UI Text',
@@ -87,6 +89,7 @@ class CupertinoNotificationTheme extends NotificationOverlayTheme {
     Widget? icon,
     super.duration = const Duration(milliseconds: 2500),
     Color? background,
+    super.widthFactor = 0.975,
     super.titleTextStyle = const TextStyle(
         color: Color(0xff212121),
         fontFamily: '.SF UI Text',
@@ -125,6 +128,7 @@ class CupertinoNotificationTheme extends NotificationOverlayTheme {
     Widget? icon,
     super.duration = const Duration(milliseconds: 2500),
     Color? background,
+    super.widthFactor = 0.975,
     super.titleTextStyle = const TextStyle(
         color: Color(0xff212121),
         fontFamily: '.SF UI Text',
@@ -163,6 +167,7 @@ class CupertinoNotificationTheme extends NotificationOverlayTheme {
     Widget? icon,
     super.duration = const Duration(milliseconds: 2500),
     Color? background,
+    super.widthFactor = 0.975,
     super.titleTextStyle = const TextStyle(
         color: Color(0xff212121),
         fontFamily: '.SF UI Text',
@@ -201,6 +206,7 @@ class CupertinoNotificationTheme extends NotificationOverlayTheme {
     Widget? icon,
     super.duration = const Duration(milliseconds: 2500),
     Color? background,
+    super.widthFactor = 0.975,
     super.titleTextStyle = const TextStyle(
         color: Color(0xff212121),
         fontFamily: '.SF UI Text',

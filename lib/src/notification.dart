@@ -2,6 +2,7 @@ part of '../simple_overlay.dart';
 
 abstract class NotificationOverlayTheme {
   final Widget icon;
+  final double widthFactor;
   final EdgeInsetsGeometry padding;
   final EdgeInsetsGeometry? margin;
   final Duration duration;
@@ -22,6 +23,7 @@ abstract class NotificationOverlayTheme {
 
   NotificationOverlayTheme(
       {required this.icon,
+      this.widthFactor = 0.975,
       this.padding =
           const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
       this.margin,
@@ -43,7 +45,11 @@ abstract class NotificationOverlayTheme {
       ImageFilter? filter,
       this.boxShadow})
       : filter = filter ?? ImageFilter.blur(sigmaX: 0, sigmaY: 0),
-        borderRadius = borderRadius ?? BorderRadius.circular(8.0);
+        borderRadius = borderRadius ?? BorderRadius.circular(8.0),
+        assert(
+          widthFactor >= 0 && widthFactor <= 1,
+          '`widthFactor` must be a double between 0 and 1',
+        );
 }
 
 class NotificationOverlay extends SimpleOverlayInterface {
@@ -56,8 +62,9 @@ class NotificationOverlay extends SimpleOverlayInterface {
       required NotificationOverlayTheme theme,
       OverlayPosition overlayPosition = const OverlayPosition.top(),
       OverlayDisplacement overlayDisplacement = OverlayDisplacement.none,
-      bool bottomNavigationBar = false}) {
-    OverlayState? overlayState = Overlay.of(context);
+      bool bottomNavigationBar = false,
+      double bottomNavigationBarHeight = kBottomNavigationBarHeight}) {
+    OverlayState overlayState = Overlay.of(context);
     bool multiline = bodyText != null && bodyText.isNotEmpty;
     OverlayEntry overlayEntry = OverlayEntry(
         builder: (context) => OverlayWidget(
@@ -69,12 +76,13 @@ class NotificationOverlay extends SimpleOverlayInterface {
               duration: theme.duration,
               overlayPosition: overlayPosition,
               overlayDisplacement: overlayDisplacement,
-              width: size.width * 0.975,
+              width: size.width * theme.widthFactor,
               padding: theme.padding,
               margin: theme.margin ??
                   EdgeInsets.symmetric(
-                      horizontal:
-                          MediaQuery.of(context).size.width * 0.025 / 2),
+                      horizontal: MediaQuery.of(context).size.width *
+                          (1 - theme.widthFactor) /
+                          2),
               background: theme.background,
               borderColor: theme.borderColor,
               borderWidth: theme.borderWidth,
@@ -82,6 +90,7 @@ class NotificationOverlay extends SimpleOverlayInterface {
               boxShadow: theme.boxShadow,
               filter: theme.filter,
               bottomNavigationBar: bottomNavigationBar,
+              bottomNavigationBarHeight: bottomNavigationBarHeight,
               content: body ??
                   Column(
                     mainAxisSize: MainAxisSize.min,

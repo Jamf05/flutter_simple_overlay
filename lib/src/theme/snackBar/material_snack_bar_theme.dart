@@ -3,6 +3,7 @@ import 'package:simple_overlay/simple_overlay.dart';
 
 class MaterialSnackBarTheme extends SnackBarOverlayTheme {
   MaterialSnackBarTheme({
+    super.widthFactor = 0.85,
     super.duration = const Duration(milliseconds: 2500),
     super.background = const Color(0xff3c3b39),
     super.textStyle =

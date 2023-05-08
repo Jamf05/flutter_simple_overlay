@@ -4,6 +4,8 @@ import 'package:simple_overlay/simple_overlay.dart';
 class MaterialToastTheme extends ToastOverlayTheme {
   MaterialToastTheme({
     super.icon,
+    super.widthFactor = 1,
+    super.constraints,
     super.duration = const Duration(milliseconds: 2500),
     super.background = const Color(0xff3c3b39),
     super.textStyle =
@@ -18,6 +20,8 @@ class MaterialToastTheme extends ToastOverlayTheme {
       Icons.replay,
       color: Colors.white,
     ),
+    super.widthFactor = 1,
+    super.constraints,
     super.duration = const Duration(milliseconds: 2500),
     super.background = const Color(0xff5f7c8a),
     super.textStyle =
@@ -32,6 +36,8 @@ class MaterialToastTheme extends ToastOverlayTheme {
       Icons.check,
       color: Colors.white,
     ),
+    super.widthFactor = 1,
+    super.constraints,
     super.duration = const Duration(milliseconds: 2500),
     super.background = const Color(0xff4cb050),
     super.textStyle =
@@ -46,6 +52,8 @@ class MaterialToastTheme extends ToastOverlayTheme {
       Icons.back_hand,
       color: Colors.white,
     ),
+    super.widthFactor = 1,
+    super.constraints,
     super.duration = const Duration(milliseconds: 2500),
     super.background = const Color(0xffff9700),
     super.textStyle =
@@ -60,6 +68,8 @@ class MaterialToastTheme extends ToastOverlayTheme {
       Icons.close,
       color: Colors.white,
     ),
+    super.widthFactor = 1,
+    super.constraints,
     super.duration = const Duration(milliseconds: 2500),
     super.background = const Color(0xfff44236),
     super.textStyle =
@@ -74,6 +84,8 @@ class MaterialToastTheme extends ToastOverlayTheme {
       Icons.warning_amber_rounded,
       color: Colors.white,
     ),
+    super.widthFactor = 1,
+    super.constraints,
     super.duration = const Duration(milliseconds: 2500),
     super.background = const Color(0xff3f51b5),
     super.textStyle =

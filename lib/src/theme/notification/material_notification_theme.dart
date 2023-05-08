@@ -8,6 +8,7 @@ class MaterialNotificationTheme extends NotificationOverlayTheme {
       color: Color(0xff212121),
       size: 18,
     ),
+    super.widthFactor = 0.975,
     super.duration = const Duration(milliseconds: 2500),
     super.background = Colors.white,
     super.titleTextStyle = const TextStyle(
@@ -35,6 +36,7 @@ class MaterialNotificationTheme extends NotificationOverlayTheme {
       color: Colors.white,
       size: 18,
     ),
+    super.widthFactor = 0.975,
     super.duration = const Duration(milliseconds: 2500),
     super.background = const Color(0xff5f7c8a),
     super.titleTextStyle = const TextStyle(
@@ -62,6 +64,7 @@ class MaterialNotificationTheme extends NotificationOverlayTheme {
       color: Colors.white,
       size: 18,
     ),
+    super.widthFactor = 0.975,
     super.duration = const Duration(milliseconds: 2500),
     super.background = const Color(0xff4cb050),
     super.titleTextStyle = const TextStyle(
@@ -89,6 +92,7 @@ class MaterialNotificationTheme extends NotificationOverlayTheme {
       color: Colors.white,
       size: 18,
     ),
+    super.widthFactor = 0.975,
     super.duration = const Duration(milliseconds: 2500),
     super.background = const Color(0xffff9700),
     super.titleTextStyle = const TextStyle(
@@ -116,6 +120,7 @@ class MaterialNotificationTheme extends NotificationOverlayTheme {
       color: Colors.white,
       size: 18,
     ),
+    super.widthFactor = 0.975,
     super.duration = const Duration(milliseconds: 2500),
     super.background = const Color(0xfff44236),
     super.titleTextStyle = const TextStyle(
@@ -143,6 +148,7 @@ class MaterialNotificationTheme extends NotificationOverlayTheme {
       color: Colors.white,
       size: 18,
     ),
+    super.widthFactor = 0.975,
     super.duration = const Duration(milliseconds: 2500),
     super.background = const Color(0xff3f51b5),
     super.titleTextStyle = const TextStyle(

@@ -22,6 +22,7 @@ class OverlayWidget extends StatefulWidget {
   final void Function(AnimationController)? controller;
   final ImageFilter filter;
   final bool bottomNavigationBar;
+  final double bottomNavigationBarHeight;
   OverlayWidget(
       {super.key,
       required this.content,
@@ -44,7 +45,8 @@ class OverlayWidget extends StatefulWidget {
       required this.borderRadius,
       ImageFilter? filter,
       this.boxShadow,
-      this.bottomNavigationBar = false})
+      this.bottomNavigationBar = false,
+      this.bottomNavigationBarHeight = kBottomNavigationBarHeight})
       : filter = filter ?? ImageFilter.blur(sigmaX: 0, sigmaY: 0);
   @override
   OverlayWidgetState createState() => OverlayWidgetState();
@@ -137,7 +139,7 @@ class OverlayWidgetState extends State<OverlayWidget>
       final keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
       bottom = widget.bottom! + keyboardHeight;
       if (keyboardHeight == 0 && widget.bottomNavigationBar) {
-        bottom = bottom + kBottomNavigationBarHeight;
+        bottom = bottom + widget.bottomNavigationBarHeight;
       }
     }
     switch (widget.type) {

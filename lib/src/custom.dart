@@ -7,6 +7,8 @@ abstract class SimpleCustomOverlayInterface {
   SimpleCustomOverlayInterface(this.context)
       : size = MediaQuery.of(context).size;
 
+  final double bottomNavigationBarHeight = kBottomNavigationBarHeight;
+
   final ToastOverlayTheme toastTheme = MaterialToastTheme();
 
   final NotificationOverlayTheme notificationTheme =
@@ -27,7 +29,8 @@ abstract class SimpleCustomOverlayInterface {
           theme: theme ?? notificationTheme,
           overlayDisplacement: overlayDisplacement,
           overlayPosition: overlayPosition,
-          bottomNavigationBar: bottomNavigationBar);
+          bottomNavigationBar: bottomNavigationBar,
+          bottomNavigationBarHeight: bottomNavigationBarHeight);
 
   void toast(String messaje,
           {ToastOverlayTheme? theme,
@@ -36,7 +39,8 @@ abstract class SimpleCustomOverlayInterface {
       ToastOverlay.of(context).toast(messaje,
           theme: theme ?? toastTheme,
           overlayPosition: overlayPosition,
-          bottomNavigationBar: bottomNavigationBar);
+          bottomNavigationBar: bottomNavigationBar,
+          bottomNavigationBarHeight: bottomNavigationBarHeight);
 
   void snackBar(String message,
           {SnackBarOverlayTheme? theme,
@@ -47,5 +51,6 @@ abstract class SimpleCustomOverlayInterface {
           theme: theme ?? snackBarTheme,
           overlayPosition: overlayPosition,
           overlayDisplacement: overlayDisplacement,
-          bottomNavigationBar: bottomNavigationBar);
+          bottomNavigationBar: bottomNavigationBar,
+          bottomNavigationBarHeight: bottomNavigationBarHeight);
 }
