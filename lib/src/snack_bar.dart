@@ -38,6 +38,23 @@ abstract class SnackBarOverlayTheme {
           widthFactor >= 0 && widthFactor <= 1,
           '`widthFactor` must be a double between 0 and 1',
         );
+  
+  SnackBarOverlayTheme copyWith({
+    double? widthFactor,
+    EdgeInsetsGeometry? padding,
+    EdgeInsetsGeometry? margin,
+    Color? background,
+    TextStyle? textStyle,
+    int? textMaxLines,
+    TextOverflow? textOverflow,
+    ButtonStyle? styleActionButton,
+    String? textActionButton,
+    double? heightActionButton,
+    Duration? duration,
+    Duration? reverseDuration,
+    BorderRadiusGeometry? borderRadius,
+    List<BoxShadow>? boxShadow,
+  });
 }
 
 class SnackBarOverlay extends SimpleOverlayInterface {

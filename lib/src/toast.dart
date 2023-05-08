@@ -28,6 +28,19 @@ abstract class ToastOverlayTheme {
           widthFactor >= 0 && widthFactor <= 1,
           '`widthFactor` must be a double between 0 and 1',
         );
+
+  ToastOverlayTheme copyWith({
+    Widget? icon,
+    double? widthFactor,
+    BoxConstraints? constraints,
+    Color? background,
+    TextStyle? textStyle,
+    int? textMaxLines,
+    TextOverflow? textoverflow,
+    Duration? duration,
+    Duration? reverseDuration,
+    BorderRadiusGeometry? borderRadius,
+  });
 }
 
 class ToastOverlay extends SimpleOverlayInterface {

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:simple_overlay/simple_overlay.dart';
 
@@ -23,6 +25,17 @@ class MaterialNotificationTheme extends NotificationOverlayTheme {
         fontSize: 14),
     super.borderColor = Colors.transparent,
     List<BoxShadow>? boxShadow,
+    super.padding,
+    super.margin,
+    super.reverseDuration,
+    super.onTap,
+    super.titleTextMaxLines,
+    super.titleTextOverflow,
+    super.bodyTextMaxLines,
+    super.bodyTextOverflow,
+    super.borderWidth,
+    super.borderRadius,
+    super.filter,
   }) : super(
           boxShadow: boxShadow ??
               <BoxShadow>[
@@ -169,4 +182,48 @@ class MaterialNotificationTheme extends NotificationOverlayTheme {
                 const BoxShadow(blurRadius: 6, color: Colors.black12)
               ],
         );
+
+  @override
+  NotificationOverlayTheme copyWith(
+      {Widget? icon,
+      double? widthFactor,
+      EdgeInsetsGeometry? padding,
+      EdgeInsetsGeometry? margin,
+      Duration? duration,
+      Duration? reverseDuration,
+      void Function()? onTap,
+      Color? background,
+      TextStyle? titleTextStyle,
+      int? titleTextMaxLines,
+      TextOverflow? titleTextOverflow,
+      TextStyle? bodyTextStyle,
+      int? bodyTextMaxLines,
+      TextOverflow? bodyTextOverflow,
+      Color? borderColor,
+      double? borderWidth,
+      BorderRadiusGeometry? borderRadius,
+      List<BoxShadow>? boxShadow,
+      ImageFilter? filter}) {
+        return MaterialNotificationTheme(
+          icon: icon ?? this.icon,
+          widthFactor: widthFactor ?? this.widthFactor,
+          padding: padding ?? this.padding,
+          margin: margin ?? this.margin,
+          duration: duration ?? this.duration,
+          reverseDuration: reverseDuration ?? this.reverseDuration,
+          onTap: onTap ?? this.onTap,
+          background: background ?? this.background,
+          titleTextStyle: titleTextStyle ?? this.titleTextStyle,
+          titleTextMaxLines: titleTextMaxLines ?? this.titleTextMaxLines,
+          titleTextOverflow: titleTextOverflow ?? this.titleTextOverflow,
+          bodyTextStyle: bodyTextStyle ?? this.bodyTextStyle,
+          bodyTextMaxLines: bodyTextMaxLines ?? this.bodyTextMaxLines,
+          bodyTextOverflow: bodyTextOverflow ?? this.bodyTextOverflow,
+          borderColor: borderColor ?? this.borderColor,
+          borderWidth: borderWidth ?? this.borderWidth,
+          borderRadius: borderRadius ?? this.borderRadius,
+          boxShadow: boxShadow ?? this.boxShadow,
+          filter: filter ?? this.filter,
+        );
+      }
 }

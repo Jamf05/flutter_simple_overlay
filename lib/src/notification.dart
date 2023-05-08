@@ -50,6 +50,28 @@ abstract class NotificationOverlayTheme {
           widthFactor >= 0 && widthFactor <= 1,
           '`widthFactor` must be a double between 0 and 1',
         );
+
+  NotificationOverlayTheme copyWith({
+    Widget? icon,
+    double? widthFactor,
+    EdgeInsetsGeometry? padding,
+    EdgeInsetsGeometry? margin,
+    Duration? duration,
+    Duration? reverseDuration,
+    void Function()? onTap,
+    Color? background,
+    TextStyle? titleTextStyle,
+    int? titleTextMaxLines,
+    TextOverflow? titleTextOverflow,
+    TextStyle? bodyTextStyle,
+    int? bodyTextMaxLines,
+    TextOverflow? bodyTextOverflow,
+    Color? borderColor,
+    double? borderWidth,
+    BorderRadiusGeometry? borderRadius,
+    List<BoxShadow>? boxShadow,
+    ImageFilter? filter,
+  });
 }
 
 class NotificationOverlay extends SimpleOverlayInterface {

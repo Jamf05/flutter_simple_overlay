@@ -26,4 +26,38 @@ class MaterialSnackBarTheme extends SnackBarOverlayTheme {
                 const BoxShadow(blurRadius: 6, color: Colors.black12)
               ],
         );
+
+  @override
+  SnackBarOverlayTheme copyWith(
+      {double? widthFactor,
+      EdgeInsetsGeometry? padding,
+      EdgeInsetsGeometry? margin,
+      Color? background,
+      TextStyle? textStyle,
+      int? textMaxLines,
+      TextOverflow? textOverflow,
+      ButtonStyle? styleActionButton,
+      String? textActionButton,
+      double? heightActionButton,
+      Duration? duration,
+      Duration? reverseDuration,
+      BorderRadiusGeometry? borderRadius,
+      List<BoxShadow>? boxShadow}) {
+    return MaterialSnackBarTheme(
+      widthFactor: widthFactor ?? this.widthFactor,
+      padding: padding ?? this.padding,
+      margin: margin ?? this.margin,
+      background: background ?? this.background,
+      textStyle: textStyle ?? this.textStyle,
+      textMaxLines: textMaxLines ?? this.textMaxLines,
+      textOverflow: textOverflow ?? this.textOverflow,
+      styleActionButton: styleActionButton ?? this.styleActionButton,
+      textActionButton: textActionButton ?? this.textActionButton,
+      heightActionButton: heightActionButton ?? this.heightActionButton,
+      duration: duration ?? this.duration,
+      reverseDuration: reverseDuration ?? this.reverseDuration,
+      borderRadius: borderRadius ?? this.borderRadius,
+      boxShadow: boxShadow ?? this.boxShadow,
+    );
+  }
 }
