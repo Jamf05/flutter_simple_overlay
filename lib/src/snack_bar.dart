@@ -12,7 +12,8 @@ abstract class SnackBarOverlayTheme {
   final String textActionButton;
   final double heightActionButton;
   final Duration duration;
-  final Duration reverseDuration;
+  final Duration removeDuration;
+  final Duration animationDuration;
   final BorderRadiusGeometry borderRadius;
   final List<BoxShadow>? boxShadow;
 
@@ -21,7 +22,8 @@ abstract class SnackBarOverlayTheme {
     this.padding = const EdgeInsets.symmetric(horizontal: 16.0, vertical: 15.0),
     this.margin,
     this.duration = const Duration(seconds: 4),
-    this.reverseDuration = const Duration(seconds: 8),
+    this.removeDuration = const Duration(seconds: 8),
+    this.animationDuration = const Duration(milliseconds: 1300),
     this.background = Colors.white,
     this.textStyle = const TextStyle(),
     this.textMaxLines = 2,
@@ -38,7 +40,7 @@ abstract class SnackBarOverlayTheme {
           widthFactor >= 0 && widthFactor <= 1,
           '`widthFactor` must be a double between 0 and 1',
         );
-  
+
   SnackBarOverlayTheme copyWith({
     double? widthFactor,
     EdgeInsetsGeometry? padding,
@@ -51,7 +53,8 @@ abstract class SnackBarOverlayTheme {
     String? textActionButton,
     double? heightActionButton,
     Duration? duration,
-    Duration? reverseDuration,
+    Duration? animationDuration,
+    Duration? removeDuration,
     BorderRadiusGeometry? borderRadius,
     List<BoxShadow>? boxShadow,
   });
@@ -65,7 +68,10 @@ class SnackBarOverlay extends SimpleOverlayInterface {
       OverlayPosition overlayPosition = const OverlayPosition.bottom(),
       OverlayDisplacement overlayDisplacement = OverlayDisplacement.none,
       bool bottomNavigationBar = false,
-      double bottomNavigationBarHeight = kBottomNavigationBarHeight}) async {
+      double bottomNavigationBarHeight = kBottomNavigationBarHeight,
+      Duration? duration,
+      Duration? removeDuration,
+      Duration? animationDuration}) async {
     OverlayState overlayState = Overlay.of(context);
     late AnimationController controller;
     late OverlayEntry overlayEntry;
@@ -77,7 +83,8 @@ class SnackBarOverlay extends SimpleOverlayInterface {
               left: overlayPosition.left,
               bottom: overlayPosition.bottom,
               right: overlayPosition.right,
-              duration: theme.duration,
+              duration: duration ?? theme.duration,
+              animationDuration: animationDuration ?? theme.animationDuration,
               overlayPosition: overlayPosition,
               overlayDisplacement: overlayDisplacement,
               width: size.width * theme.widthFactor,
@@ -120,7 +127,7 @@ class SnackBarOverlay extends SimpleOverlayInterface {
               ),
             ));
     overlayState.insert(overlayEntry);
-    Future.delayed(theme.reverseDuration).then((_) {
+    Future.delayed(removeDuration ?? theme.removeDuration).then((_) {
       if (overlayEntry.mounted) {
         overlayEntry.remove();
       }

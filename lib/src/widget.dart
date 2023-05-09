@@ -7,7 +7,8 @@ class OverlayWidget extends StatefulWidget {
   final double? right;
   final double? bottom;
   final double? width;
-  final Duration? duration;
+  final Duration duration;
+  final Duration animationDuration;
   final OverlayType type;
   final void Function()? onTap;
   final Color background;
@@ -31,7 +32,8 @@ class OverlayWidget extends StatefulWidget {
       this.left,
       this.right,
       this.bottom,
-      this.duration,
+      this.duration = const Duration(seconds: 1),
+      this.animationDuration = const Duration(seconds: 1),
       this.width,
       required this.type,
       this.onTap,
@@ -63,11 +65,11 @@ class OverlayWidgetState extends State<OverlayWidget>
     switch (widget.type) {
       case OverlayType.toast:
         controller = AnimationController(
-            duration: const Duration(milliseconds: 250), vsync: this);
+            duration: widget.animationDuration, vsync: this);
         animation = CurvedAnimation(parent: controller, curve: Curves.easeIn);
         animation.addStatusListener((status) {
           if (status == AnimationStatus.completed) {
-            Future.delayed(widget.duration ?? const Duration(seconds: 1), () {
+            Future.delayed(widget.duration, () {
               if (mounted && controller.isCompleted == true) {
                 controller.reverse();
               }
@@ -109,7 +111,7 @@ class OverlayWidgetState extends State<OverlayWidget>
           }
         }
         controller = AnimationController(
-            duration: const Duration(milliseconds: 1300), vsync: this);
+            duration: widget.animationDuration, vsync: this);
         _offsetAnimation = Tween<Offset>(
           begin: begin,
           end: end,
@@ -119,7 +121,7 @@ class OverlayWidgetState extends State<OverlayWidget>
         ));
         _offsetAnimation.addStatusListener((status) {
           if (status == AnimationStatus.completed) {
-            Future.delayed(widget.duration ?? const Duration(seconds: 1), () {
+            Future.delayed(widget.duration, () {
               if (mounted && controller.isCompleted == true) {
                 controller.reverse();
               }

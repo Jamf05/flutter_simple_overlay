@@ -7,12 +7,13 @@ class MaterialToastTheme extends ToastOverlayTheme {
       super.widthFactor = 1,
       super.constraints,
       super.duration = const Duration(milliseconds: 2500),
+      super.animationDuration,
+      super.removeDuration,
       super.background = const Color(0xff3c3b39),
       super.textStyle =
           const TextStyle(color: Colors.white, fontFamily: 'Roboto'),
       super.textMaxLines,
       super.textoverflow,
-      super.reverseDuration,
       BorderRadiusGeometry? borderRadius})
       : super(borderRadius: borderRadius ?? BorderRadius.circular(40));
 
@@ -24,12 +25,13 @@ class MaterialToastTheme extends ToastOverlayTheme {
       super.widthFactor = 1,
       super.constraints,
       super.duration = const Duration(milliseconds: 2500),
+      super.animationDuration,
+      super.removeDuration,
       super.background = const Color(0xff5f7c8a),
       super.textStyle =
           const TextStyle(color: Colors.white, fontFamily: 'Roboto'),
       super.textMaxLines,
       super.textoverflow,
-      super.reverseDuration,
       BorderRadiusGeometry? borderRadius})
       : super(borderRadius: borderRadius ?? BorderRadius.circular(40));
 
@@ -41,12 +43,13 @@ class MaterialToastTheme extends ToastOverlayTheme {
       super.widthFactor = 1,
       super.constraints,
       super.duration = const Duration(milliseconds: 2500),
+      super.animationDuration,
+      super.removeDuration,
       super.background = const Color(0xff4cb050),
       super.textStyle =
           const TextStyle(color: Colors.white, fontFamily: 'Roboto'),
       super.textMaxLines,
       super.textoverflow,
-      super.reverseDuration,
       BorderRadiusGeometry? borderRadius})
       : super(borderRadius: borderRadius ?? BorderRadius.circular(40));
 
@@ -58,12 +61,13 @@ class MaterialToastTheme extends ToastOverlayTheme {
       super.widthFactor = 1,
       super.constraints,
       super.duration = const Duration(milliseconds: 2500),
+      super.animationDuration,
+      super.removeDuration,
       super.background = const Color(0xffff9700),
       super.textStyle =
           const TextStyle(color: Colors.white, fontFamily: 'Roboto'),
       super.textMaxLines,
       super.textoverflow,
-      super.reverseDuration,
       BorderRadiusGeometry? borderRadius})
       : super(borderRadius: borderRadius ?? BorderRadius.circular(40));
 
@@ -75,12 +79,13 @@ class MaterialToastTheme extends ToastOverlayTheme {
       super.widthFactor = 1,
       super.constraints,
       super.duration = const Duration(milliseconds: 2500),
+      super.animationDuration,
+      super.removeDuration,
       super.background = const Color(0xfff44236),
       super.textStyle =
           const TextStyle(color: Colors.white, fontFamily: 'Roboto'),
       super.textMaxLines,
       super.textoverflow,
-      super.reverseDuration,
       BorderRadiusGeometry? borderRadius})
       : super(borderRadius: borderRadius ?? BorderRadius.circular(40));
 
@@ -92,12 +97,13 @@ class MaterialToastTheme extends ToastOverlayTheme {
       super.widthFactor = 1,
       super.constraints,
       super.duration = const Duration(milliseconds: 2500),
+      super.animationDuration,
+      super.removeDuration,
       super.background = const Color(0xff3f51b5),
       super.textStyle =
           const TextStyle(color: Colors.white, fontFamily: 'Roboto'),
       super.textMaxLines,
       super.textoverflow,
-      super.reverseDuration,
       BorderRadiusGeometry? borderRadius})
       : super(borderRadius: borderRadius ?? BorderRadius.circular(40));
 
@@ -111,7 +117,8 @@ class MaterialToastTheme extends ToastOverlayTheme {
       int? textMaxLines,
       TextOverflow? textoverflow,
       Duration? duration,
-      Duration? reverseDuration,
+      Duration? animationDuration,
+      Duration? removeDuration,
       BorderRadiusGeometry? borderRadius}) {
     return MaterialToastTheme(
       icon: icon ?? this.icon,
@@ -122,7 +129,8 @@ class MaterialToastTheme extends ToastOverlayTheme {
       textMaxLines: textMaxLines ?? this.textMaxLines,
       textoverflow: textoverflow ?? this.textoverflow,
       duration: duration ?? this.duration,
-      reverseDuration: reverseDuration ?? this.reverseDuration,
+      animationDuration: animationDuration ?? this.animationDuration,
+      removeDuration: removeDuration ?? this.removeDuration,
       borderRadius: borderRadius ?? this.borderRadius,
     );
   }

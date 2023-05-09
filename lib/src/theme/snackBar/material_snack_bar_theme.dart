@@ -5,13 +5,14 @@ class MaterialSnackBarTheme extends SnackBarOverlayTheme {
   MaterialSnackBarTheme({
     super.widthFactor = 0.85,
     super.duration = const Duration(milliseconds: 2500),
+    super.animationDuration,
+    super.removeDuration = const Duration(seconds: 3000),
     super.background = const Color(0xff3c3b39),
     super.textStyle =
         const TextStyle(color: Colors.white, fontFamily: 'Roboto'),
     super.padding =
         const EdgeInsets.symmetric(horizontal: 16.0, vertical: 15.0),
     super.margin,
-    super.reverseDuration = const Duration(seconds: 8),
     super.textMaxLines = 2,
     super.textOverflow = TextOverflow.ellipsis,
     BorderRadiusGeometry? borderRadius,
@@ -40,7 +41,8 @@ class MaterialSnackBarTheme extends SnackBarOverlayTheme {
       String? textActionButton,
       double? heightActionButton,
       Duration? duration,
-      Duration? reverseDuration,
+      Duration? animationDuration,
+      Duration? removeDuration,
       BorderRadiusGeometry? borderRadius,
       List<BoxShadow>? boxShadow}) {
     return MaterialSnackBarTheme(
@@ -55,7 +57,8 @@ class MaterialSnackBarTheme extends SnackBarOverlayTheme {
       textActionButton: textActionButton ?? this.textActionButton,
       heightActionButton: heightActionButton ?? this.heightActionButton,
       duration: duration ?? this.duration,
-      reverseDuration: reverseDuration ?? this.reverseDuration,
+      animationDuration: animationDuration ?? this.animationDuration,
+      removeDuration: removeDuration ?? this.removeDuration,
       borderRadius: borderRadius ?? this.borderRadius,
       boxShadow: boxShadow ?? this.boxShadow,
     );

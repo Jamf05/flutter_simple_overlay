@@ -9,7 +9,8 @@ abstract class ToastOverlayTheme {
   final int textMaxLines;
   final TextOverflow textoverflow;
   final Duration duration;
-  final Duration reverseDuration;
+  final Duration removeDuration;
+  final Duration animationDuration;
   final BorderRadiusGeometry borderRadius;
 
   ToastOverlayTheme(
@@ -17,7 +18,8 @@ abstract class ToastOverlayTheme {
       this.widthFactor = 1,
       this.constraints,
       this.duration = const Duration(milliseconds: 2500),
-      this.reverseDuration = const Duration(milliseconds: 3500),
+      this.removeDuration = const Duration(milliseconds: 3500),
+      this.animationDuration = const Duration(milliseconds: 250),
       this.background = Colors.black,
       this.textStyle = const TextStyle(),
       this.textMaxLines = 2,
@@ -38,7 +40,8 @@ abstract class ToastOverlayTheme {
     int? textMaxLines,
     TextOverflow? textoverflow,
     Duration? duration,
-    Duration? reverseDuration,
+    Duration? animationDuration,
+    Duration? removeDuration,
     BorderRadiusGeometry? borderRadius,
   });
 }
@@ -50,7 +53,10 @@ class ToastOverlay extends SimpleOverlayInterface {
       {required ToastOverlayTheme theme,
       OverlayPosition overlayPosition = const OverlayPosition.top(),
       bool bottomNavigationBar = false,
-      double bottomNavigationBarHeight = kBottomNavigationBarHeight}) async {
+      double bottomNavigationBarHeight = kBottomNavigationBarHeight,
+      Duration? duration,
+      Duration? removeDuration,
+      Duration? animationDuration}) async {
     Widget text = Text(
       messaje,
       style: theme.textStyle,
@@ -99,7 +105,8 @@ class ToastOverlay extends SimpleOverlayInterface {
               bottom: overlayPosition.bottom,
               content: content,
               width: size.width * theme.widthFactor,
-              duration: theme.duration,
+              duration: duration ?? theme.duration,
+              animationDuration: animationDuration ?? theme.animationDuration,
               background: theme.background,
               overlayPosition: overlayPosition,
               overlayDisplacement: OverlayDisplacement.none,
@@ -109,7 +116,7 @@ class ToastOverlay extends SimpleOverlayInterface {
               bottomNavigationBarHeight: bottomNavigationBarHeight,
             ));
     overlayState.insert(overlayEntry);
-    Future.delayed(theme.reverseDuration).then((_) {
+    Future.delayed(removeDuration ?? theme.removeDuration).then((_) {
       overlayEntry.remove();
     });
   }

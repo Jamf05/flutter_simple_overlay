@@ -6,7 +6,8 @@ abstract class NotificationOverlayTheme {
   final EdgeInsetsGeometry padding;
   final EdgeInsetsGeometry? margin;
   final Duration duration;
-  final Duration reverseDuration;
+  final Duration removeDuration;
+  final Duration animationDuration;
   final void Function()? onTap;
   final Color background;
   final TextStyle titleTextStyle;
@@ -28,7 +29,8 @@ abstract class NotificationOverlayTheme {
           const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
       this.margin,
       this.duration = const Duration(seconds: 5),
-      this.reverseDuration = const Duration(seconds: 10),
+      this.removeDuration = const Duration(seconds: 10),
+      this.animationDuration = const Duration(milliseconds: 1300),
       this.onTap,
       this.background = Colors.white,
       this.titleTextStyle =
@@ -57,7 +59,8 @@ abstract class NotificationOverlayTheme {
     EdgeInsetsGeometry? padding,
     EdgeInsetsGeometry? margin,
     Duration? duration,
-    Duration? reverseDuration,
+    Duration? removeDuration,
+    Duration? animationDuration,
     void Function()? onTap,
     Color? background,
     TextStyle? titleTextStyle,
@@ -85,7 +88,9 @@ class NotificationOverlay extends SimpleOverlayInterface {
       OverlayPosition overlayPosition = const OverlayPosition.top(),
       OverlayDisplacement overlayDisplacement = OverlayDisplacement.none,
       bool bottomNavigationBar = false,
-      double bottomNavigationBarHeight = kBottomNavigationBarHeight}) {
+      double bottomNavigationBarHeight = kBottomNavigationBarHeight,
+      Duration? duration,
+      Duration? removeDuration, Duration? animationDuration}) {
     OverlayState overlayState = Overlay.of(context);
     bool multiline = bodyText != null && bodyText.isNotEmpty;
     OverlayEntry overlayEntry = OverlayEntry(
@@ -95,7 +100,8 @@ class NotificationOverlay extends SimpleOverlayInterface {
               left: overlayPosition.left,
               bottom: overlayPosition.bottom,
               right: overlayPosition.right,
-              duration: theme.duration,
+              duration: duration ?? theme.duration,
+              animationDuration: animationDuration ?? theme.animationDuration,
               overlayPosition: overlayPosition,
               overlayDisplacement: overlayDisplacement,
               width: size.width * theme.widthFactor,
@@ -154,7 +160,7 @@ class NotificationOverlay extends SimpleOverlayInterface {
               onTap: theme.onTap,
             ));
     overlayState.insert(overlayEntry);
-    Future.delayed(theme.reverseDuration).then((_) {
+    Future.delayed(removeDuration ?? theme.removeDuration).then((_) {
       overlayEntry.remove();
     });
   }
